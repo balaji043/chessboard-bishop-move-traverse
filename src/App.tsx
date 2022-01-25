@@ -88,7 +88,8 @@ function App() {
 			</div>
 		);
 	};
-
+	const getIsTraverseColor = () =>
+		canTraverse == IS_TRAVERSABLE.yes ? 'green' : 'red';
 	return (
 		<div className='Container'>
 			<div className='InputContainer'>
@@ -99,7 +100,8 @@ function App() {
 					<p
 						className='TraverseText'
 						style={{
-							color: canTraverse == IS_TRAVERSABLE.yes ? 'green' : 'red',
+							color: getIsTraverseColor(),
+							borderColor: getIsTraverseColor(),
 						}}
 					>
 						{canTraverse}
