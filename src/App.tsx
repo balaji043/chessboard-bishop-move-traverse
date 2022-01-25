@@ -5,6 +5,7 @@ import { IPoint, getChessGrid, isSame, COLORS, IS_TRAVERSABLE } from './utils';
 import defaultData from './data';
 import { PointInput } from './PointInput';
 import { FC } from 'react';
+import { useEffect } from 'react';
 
 function App() {
 	const [startPoint, setStartPoint] = useState<IPoint>(defaultData.start);
@@ -13,6 +14,10 @@ function App() {
 	const [canTraverse, setCanTraverse] = useState<string>(
 		IS_TRAVERSABLE.default
 	);
+	useEffect(() => {
+		setStart(startPoint);
+		setEnd(endPoint);
+	}, []);
 	const clearSelection = () => {
 		grid.map((row, i) => {
 			row.map((_, j) => {
@@ -22,6 +27,19 @@ function App() {
 			});
 		});
 		setGrid([...grid]);
+	};
+	const resetPoint = (old: IPoint, newPoint: IPoint, color: string) => {
+		grid[old.x][old.y] = COLORS.default;
+		grid[newPoint.x][newPoint.y] = color;
+		setGrid([...grid]);
+	};
+	const setStart = (point: IPoint) => {
+		resetPoint(startPoint, point, COLORS.start);
+		setStartPoint(point);
+	};
+	const setEnd = (point: IPoint) => {
+		resetPoint(endPoint, point, COLORS.end);
+		setEndPoint(point);
 	};
 	const actionButtons = () => {
 		return (
@@ -44,15 +62,21 @@ function App() {
 							endPoint.x,
 							endPoint.y
 						);
-						if (result != null) {
+						if (result === null) {
+							setCanTraverse(IS_TRAVERSABLE.no);
+						} else {
 							console.log(result);
 							result.map((e) => {
-								grid[e[0]][e[1]] = COLORS.selected;
+								const i = e[0];
+								const j = e[1];
+								if (isSame(i, j, startPoint)) {
+									grid[i][j] = COLORS.start;
+								} else if (isSame(i, j, endPoint)) {
+									grid[i][j] = COLORS.end;
+								} else grid[i][j] = COLORS.selected;
 							});
 							setGrid([...grid]);
 							setCanTraverse(IS_TRAVERSABLE.yes);
-						} else {
-							setCanTraverse(IS_TRAVERSABLE.no);
 						}
 					}}
 				>
@@ -61,11 +85,12 @@ function App() {
 			</div>
 		);
 	};
+
 	return (
 		<div className='Container'>
 			<div className='InputContainer'>
-				<PointInput point={startPoint} setPoint={setStartPoint} type='Start' />
-				<PointInput point={endPoint} setPoint={setEndPoint} type='End' />
+				<PointInput point={startPoint} setPoint={setStart} type='Start' />
+				<PointInput point={endPoint} setPoint={setEnd} type='End' />
 				{actionButtons()}
 				{canTraverse !== IS_TRAVERSABLE.default && (
 					<p
@@ -84,15 +109,11 @@ function App() {
 						return (
 							<div key={`row${i}`} style={{ display: 'flex' }}>
 								{row.map((_, j) => {
-									const isStart = isSame(i, j, startPoint);
-									const isEnd = isSame(i, j, endPoint);
 									return (
 										<ChessBoardCell
 											key={`cell${i}${j}`}
 											i={i}
 											j={j}
-											isStart={isStart}
-											isEnd={isEnd}
 											setGrid={setGrid}
 											grid={grid}
 										/>
@@ -108,8 +129,8 @@ function App() {
 }
 
 interface IChessBoardCell {
-	isStart: boolean;
-	isEnd: boolean;
+	isStart?: boolean;
+	isEnd?: boolean;
 	i: number;
 	j: number;
 	grid: string[][];
@@ -134,11 +155,7 @@ const ChessBoardCell: FC<IChessBoardCell> = ({
 			}}
 			className='Box'
 			style={{
-				backgroundColor: isStart
-					? COLORS.start
-					: isEnd
-					? COLORS.end
-					: grid[i][j],
+				backgroundColor: grid[i][j],
 			}}
 		>
 			[{`${i},${j}`}]

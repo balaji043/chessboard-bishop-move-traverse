@@ -16,7 +16,7 @@ export const PointInput: FC<IPointInputProps> = ({ point, setPoint, type }) => {
 					const n = parseInt(e.target.value);
 					if (isValidCoordinate(n)) setPoint({ x: n, y: point.y });
 				}}
-				label={`${type} row`}
+				label={`${type} Point Row`}
 			/>
 			<NumInput
 				defaultValue={point.y}
@@ -24,7 +24,7 @@ export const PointInput: FC<IPointInputProps> = ({ point, setPoint, type }) => {
 					const n = parseInt(e.target.value);
 					if (isValidCoordinate(n)) setPoint({ x: point.x, y: n });
 				}}
-				label={`${type} Col`}
+				label={`${type} Point Col`}
 			/>
 		</div>
 	);
