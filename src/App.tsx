@@ -32,6 +32,9 @@ function App() {
 		grid[old.x][old.y] = COLORS.default;
 		grid[newPoint.x][newPoint.y] = color;
 		setGrid([...grid]);
+		if (canTraverse) {
+			setCanTraverse(IS_TRAVERSABLE.default);
+		}
 	};
 	const setStart = (point: IPoint) => {
 		resetPoint(startPoint, point, COLORS.start);
