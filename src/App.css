@@ -1,0 +1,79 @@
+.Container {
+	display: flex;
+	height: 100vh;
+	width: 100vw;
+	overflow-x: hidden;
+}
+.InputContainer {
+	width: 30%;
+	padding: 30px;
+}
+.ChessBoard {
+	width: 70%;
+	display: grid;
+	padding: 30px;
+}
+
+.Box {
+	width: 75px;
+	height: 75px;
+	border: 1px solid black;
+	margin: 5px;
+	font-size: 16;
+	border-radius: 5px;
+}
+.InputGroup {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+input {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+	opacity: 1;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+	-webkit-appearance: inner-spin-button !important;
+	width: 25px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+}
+label {
+	display: block;
+}
+.button {
+	background-color: #4caf50; /* Green */
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	border-radius: 12px;
+}
+.ActionButtons {
+	display: grid;
+	gap: 20px;
+	margin-top: 50px;
+}
+.TraverseText {
+	width: 100%;
+	padding-top: 16px;
+	padding-bottom: 16px;
+	border: 2px black solid;
+	text-align: center;
+	border-radius: 12px;
+}
