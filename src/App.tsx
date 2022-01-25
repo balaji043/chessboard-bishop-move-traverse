@@ -14,10 +14,6 @@ function App() {
 	const [canTraverse, setCanTraverse] = useState<string>(
 		IS_TRAVERSABLE.default
 	);
-	useEffect(() => {
-		setStart(startPoint);
-		setEnd(endPoint);
-	}, []);
 	const clearSelection = () => {
 		grid.map((row, i) => {
 			row.map((_, j) => {
@@ -36,14 +32,7 @@ function App() {
 			setCanTraverse(IS_TRAVERSABLE.default);
 		}
 	};
-	const setStart = (point: IPoint) => {
-		resetPoint(startPoint, point, COLORS.start);
-		setStartPoint(point);
-	};
-	const setEnd = (point: IPoint) => {
-		resetPoint(endPoint, point, COLORS.end);
-		setEndPoint(point);
-	};
+
 	const actionButtons = () => {
 		return (
 			<div className='ActionButtons'>
@@ -72,11 +61,7 @@ function App() {
 							result.map((e) => {
 								const i = e[0];
 								const j = e[1];
-								if (isSame(i, j, startPoint)) {
-									grid[i][j] = COLORS.start;
-								} else if (isSame(i, j, endPoint)) {
-									grid[i][j] = COLORS.end;
-								} else grid[i][j] = COLORS.selected;
+								grid[i][j] = COLORS.selected;
 							});
 							setGrid([...grid]);
 							setCanTraverse(IS_TRAVERSABLE.yes);
@@ -93,8 +78,8 @@ function App() {
 	return (
 		<div className='Container'>
 			<div className='InputContainer'>
-				<PointInput point={startPoint} setPoint={setStart} type='Start' />
-				<PointInput point={endPoint} setPoint={setEnd} type='End' />
+				<PointInput point={startPoint} setPoint={setStartPoint} type='Start' />
+				<PointInput point={endPoint} setPoint={setEndPoint} type='End' />
 				{actionButtons()}
 				{canTraverse !== IS_TRAVERSABLE.default && (
 					<p
@@ -114,9 +99,14 @@ function App() {
 						return (
 							<div key={`row${i}`} style={{ display: 'flex' }}>
 								{row.map((_, j) => {
+									const isStart = isSame(i, j, startPoint);
+									const isEnd = isSame(i, j, endPoint);
+
 									return (
 										<ChessBoardCell
 											key={`cell${i}${j}`}
+											isStart={isStart}
+											isEnd={isEnd}
 											i={i}
 											j={j}
 											setGrid={setGrid}
@@ -134,8 +124,8 @@ function App() {
 }
 
 interface IChessBoardCell {
-	isStart?: boolean;
-	isEnd?: boolean;
+	isStart: boolean;
+	isEnd: boolean;
 	i: number;
 	j: number;
 	grid: string[][];
@@ -149,6 +139,17 @@ const ChessBoardCell: FC<IChessBoardCell> = ({
 	j,
 	setGrid,
 }) => {
+	const backgroundColor = (): any => {
+		if (isStart && isEnd) {
+			return {
+				backgroundColor: '#038285',
+				color: 'white',
+			};
+		}
+		return {
+			backgroundColor: isStart ? COLORS.start : isEnd ? COLORS.end : grid[i][j],
+		};
+	};
 	return (
 		<button
 			onClick={() => {
@@ -159,9 +160,7 @@ const ChessBoardCell: FC<IChessBoardCell> = ({
 				}
 			}}
 			className='Box'
-			style={{
-				backgroundColor: grid[i][j],
-			}}
+			style={backgroundColor()}
 		>
 			[{`${i},${j}`}]
 		</button>
