@@ -67,9 +67,9 @@ export const traverseBishopMove = (
 			// top left
 			result = traverseBishopMove(a - 1, b - 1, x, y);
 			if (result == null) {
-				console.log('br');
-				// bottom left
-				result = traverseBishopMove(a + 1, b - 1, x, y);
+				console.log('tr');
+				// top right
+				result = traverseBishopMove(a - 1, b + 1, x, y);
 			}
 		}
 	} else if (x > a && y > b) {
