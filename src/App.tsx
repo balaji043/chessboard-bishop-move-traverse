@@ -64,8 +64,8 @@ function App() {
 	return (
 		<div className='Container'>
 			<div className='InputContainer'>
-				<PointInput point={startPoint} setPoint={setStartPoint} />
-				<PointInput point={endPoint} setPoint={setEndPoint} />
+				<PointInput point={startPoint} setPoint={setStartPoint} type='Start' />
+				<PointInput point={endPoint} setPoint={setEndPoint} type='End' />
 				{actionButtons()}
 				{canTraverse !== IS_TRAVERSABLE.default && (
 					<p

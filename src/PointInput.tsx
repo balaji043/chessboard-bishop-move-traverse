@@ -4,9 +4,10 @@ import { IPoint, isValidCoordinate } from './utils';
 export interface IPointInputProps {
 	point: IPoint;
 	setPoint: (ipoint: IPoint) => void;
+	type: 'Start' | 'End';
 }
 
-export const PointInput: FC<IPointInputProps> = ({ point, setPoint }) => {
+export const PointInput: FC<IPointInputProps> = ({ point, setPoint, type }) => {
 	return (
 		<div className='InputGroup'>
 			<NumInput
@@ -15,7 +16,7 @@ export const PointInput: FC<IPointInputProps> = ({ point, setPoint }) => {
 					const n = parseInt(e.target.value);
 					if (isValidCoordinate(n)) setPoint({ x: n, y: point.y });
 				}}
-				label='End row'
+				label={`${type} row`}
 			/>
 			<NumInput
 				defaultValue={point.y}
@@ -23,7 +24,7 @@ export const PointInput: FC<IPointInputProps> = ({ point, setPoint }) => {
 					const n = parseInt(e.target.value);
 					if (isValidCoordinate(n)) setPoint({ x: point.x, y: n });
 				}}
-				label='End Col'
+				label={`${type} Col`}
 			/>
 		</div>
 	);
