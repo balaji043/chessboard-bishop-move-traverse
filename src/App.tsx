@@ -1,9 +1,16 @@
 import { useState } from 'react';
 import { traverseBishopMove } from './utility/bishopTraversable';
-import { IPoint, getChessGrid, isSame, COLORS, IS_TRAVERSABLE } from './utility/utils';
+import {
+	IPoint,
+	getChessGrid,
+	isSame,
+	COLORS,
+	IS_TRAVERSABLE,
+} from './utility/utils';
 import defaultData from './utility/data';
 import { BoardCell } from './components/BoardCell';
 import { PointInput } from './components/PointInput';
+import { ColorCoder } from './components/ColorCoder';
 
 function App() {
 	const [startPoint, setStartPoint] = useState<IPoint>(defaultData.start);
@@ -69,6 +76,12 @@ function App() {
 			<div className='InputContainer'>
 				<PointInput point={startPoint} setPoint={setStartPoint} type='Start' />
 				<PointInput point={endPoint} setPoint={setEndPoint} type='End' />
+				<div className='ColorCoderContainer'>
+					<ColorCoder backgroundColor={COLORS.default} label='Default' />
+					<ColorCoder backgroundColor={COLORS.selected} label='Selected' />
+					<ColorCoder backgroundColor={COLORS.start} label='Start' />
+					<ColorCoder backgroundColor={COLORS.end} label='End' />
+				</div>
 				{actionButtons()}
 				{canTraverse !== IS_TRAVERSABLE.default && (
 					<p

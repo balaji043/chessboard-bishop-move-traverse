@@ -90,3 +90,20 @@ label {
 	text-align: center;
 	border-radius: 12px;
 }
+.ColorCoderContainer {
+	display: grid;
+	grid-template-columns: auto auto;
+}
+.ColorCoder {
+	display: flex;
+}
+.ColorCoderBox {
+	margin: 2px;
+	width: 25px;
+	height: 25px;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+.ColorCoderLabel {
+	margin-left: 10px;
+}
