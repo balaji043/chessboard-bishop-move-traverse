@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import './App.css';
-import { traverseBishopMove } from './bishopTraversable';
-import { IPoint, getChessGrid, isSame, COLORS, IS_TRAVERSABLE } from './utils';
-import defaultData from './data';
-import { PointInput } from './PointInput';
-import { FC } from 'react';
-import { useEffect } from 'react';
+import { traverseBishopMove } from './utility/bishopTraversable';
+import { IPoint, getChessGrid, isSame, COLORS, IS_TRAVERSABLE } from './utility/utils';
+import defaultData from './utility/data';
+import { BoardCell } from './components/BoardCell';
+import { PointInput } from './components/PointInput';
 
 function App() {
 	const [startPoint, setStartPoint] = useState<IPoint>(defaultData.start);
@@ -24,15 +22,6 @@ function App() {
 		});
 		setGrid([...grid]);
 	};
-	const resetPoint = (old: IPoint, newPoint: IPoint, color: string) => {
-		grid[old.x][old.y] = COLORS.default;
-		grid[newPoint.x][newPoint.y] = color;
-		setGrid([...grid]);
-		if (canTraverse) {
-			setCanTraverse(IS_TRAVERSABLE.default);
-		}
-	};
-
 	const actionButtons = () => {
 		return (
 			<div className='ActionButtons'>
@@ -101,9 +90,8 @@ function App() {
 								{row.map((_, j) => {
 									const isStart = isSame(i, j, startPoint);
 									const isEnd = isSame(i, j, endPoint);
-
 									return (
-										<ChessBoardCell
+										<BoardCell
 											key={`cell${i}${j}`}
 											isStart={isStart}
 											isEnd={isEnd}
@@ -123,47 +111,4 @@ function App() {
 	);
 }
 
-interface IChessBoardCell {
-	isStart: boolean;
-	isEnd: boolean;
-	i: number;
-	j: number;
-	grid: string[][];
-	setGrid: (grid: string[][]) => void;
-}
-const ChessBoardCell: FC<IChessBoardCell> = ({
-	isStart,
-	isEnd,
-	grid,
-	i,
-	j,
-	setGrid,
-}) => {
-	const backgroundColor = (): any => {
-		if (isStart && isEnd) {
-			return {
-				backgroundColor: '#038285',
-				color: 'white',
-			};
-		}
-		return {
-			backgroundColor: isStart ? COLORS.start : isEnd ? COLORS.end : grid[i][j],
-		};
-	};
-	return (
-		<button
-			onClick={() => {
-				if (!isStart && !isEnd) {
-					if (grid[i][j] === COLORS.selected) grid[i][j] = COLORS.default;
-					else grid[i][j] = COLORS.selected;
-					setGrid([...grid]);
-				}
-			}}
-			className='Box'
-			style={backgroundColor()}
-		>
-			[{`${i},${j}`}]
-		</button>
-	);
-};
 export default App;

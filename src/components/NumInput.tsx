@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { CHESS_BOARD_SIZE } from './utils';
+import { CHESS_BOARD_SIZE } from '../utility/utils';
 export interface INumInputProps {
 	defaultValue: number;
 	label: string;

@@ -1,6 +1,6 @@
 import { FC } from 'react';
+import { IPoint, isValidCoordinate } from '../utility/utils';
 import { NumInput } from './NumInput';
-import { IPoint, isValidCoordinate } from './utils';
 export interface IPointInputProps {
 	point: IPoint;
 	setPoint: (ipoint: IPoint) => void;
