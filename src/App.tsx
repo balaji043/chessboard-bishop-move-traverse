@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { traverseBishopMove } from './utility/bishopTraversable';
+import { traverseBishopMoveMain } from './utility/bishopTraversable';
 import {
 	IPoint,
 	getChessGrid,
@@ -44,21 +44,12 @@ function App() {
 					className='button'
 					onClick={() => {
 						clearSelection();
-						const result = traverseBishopMove(
-							startPoint.x,
-							startPoint.y,
-							endPoint.x,
-							endPoint.y
-						);
+						const result = traverseBishopMoveMain(startPoint, endPoint);
 						if (result === null) {
 							setCanTraverse(IS_TRAVERSABLE.no);
 						} else {
 							console.log(result);
-							result.map((e) => {
-								const i = e[0];
-								const j = e[1];
-								grid[i][j] = COLORS.selected;
-							});
+							result.map((e) => (grid[e.x][e.y] = COLORS.selected));
 							setGrid([...grid]);
 							setCanTraverse(IS_TRAVERSABLE.yes);
 						}

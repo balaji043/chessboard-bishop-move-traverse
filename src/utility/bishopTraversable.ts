@@ -1,85 +1,93 @@
-export const traverseBishopMove = (
-	a: number,
-	b: number,
-	x: number,
-	y: number,
+import { IPoint } from './utils';
+const moveTopLeft = (start: IPoint, end: IPoint) => {
+	console.log('top left');
+	// top left
+	return traverseBishopMove({ x: start.x - 1, y: start.y - 1 }, end);
+};
+const moveTopRight = (start: IPoint, end: IPoint) => {
+	console.log('top right');
+	return traverseBishopMove({ x: start.x - 1, y: start.y + 1 }, end);
+};
+const moveBottomRight = (start: IPoint, end: IPoint) => {
+	console.log('bottom right');
+	return traverseBishopMove({ x: start.x + 1, y: start.y + 1 }, end);
+};
+const moveBottomLeft = (start: IPoint, end: IPoint) => {
+	console.log('bottom left');
+	return traverseBishopMove({ x: start.x + 1, y: start.y - 1 }, end);
+};
+const traverseBishopMove = (
+	start: IPoint,
+	end: IPoint,
 	n: number = 8
-): number[][] | null => {
-	const currentPoint = { a, b, x, y };
-	console.log(currentPoint);
-	if (a < 0 || b < 0 || a >= n || b >= n) {
+): IPoint[] | null => {
+	if (start.x < 0 || start.y < 0 || start.x >= n || start.y >= n) {
 		return null;
 	}
-	if (a == x && b == y) {
-		return [[a, b]];
+	if (start.x == end.x && start.y == end.y) {
+		return [start];
 	}
 	let result = null;
-	const moveTopLeft = () => {
-		console.log('tl');
-		// top left
-		return traverseBishopMove(a - 1, b - 1, x, y);
-	};
-	const moveTopRight = () => {
-		console.log('tr');
-		// top right
-		return traverseBishopMove(a - 1, b + 1, x, y);
-	};
-	const moveBottomRight = () => {
-		console.log('bl');
-		// bottom right
-		return traverseBishopMove(a + 1, b + 1, x, y);
-	};
 
-	const moveBottomLeft = () => {
-		console.log('bl');
-		// bottom left
-		return traverseBishopMove(a + 1, b - 1, x, y);
-	};
-	if (a == x) {
+	if (start.x == end.x) {
 		console.log('same row');
-		if (y > b) {
+		if (end.y > start.y) {
 			console.log('right');
-			if (y - b === 0 || (y - b - 1) % 2 === 0) {
+			if (end.y - start.y === 0 || (end.y - start.y - 1) % 2 === 0) {
 				return null;
 			}
-			result = moveTopRight();
+			result = moveTopRight(start, end);
 			if (result == null) {
-				result = moveBottomRight();
+				result = moveBottomRight(start, end);
 			}
 		} else {
 			console.log('left');
-			if (b - y === 0 || (b - y + 1) % 2 === 0) {
+			if (start.y - end.y === 0 || (start.y - end.y + 1) % 2 === 0) {
 				return null;
 			}
-			result = moveTopLeft();
+			result = moveTopLeft(start, end);
 			if (result == null) {
-				result = moveBottomLeft();
+				result = moveBottomLeft(start, end);
 			}
 		}
-	} else if (b == y) {
+	} else if (start.y == end.y) {
 		console.log('same column');
-		if (x > a) {
+		if (end.x > start.x) {
 			console.log('bottom');
-			if (x - a === 0 || (x - a - 1) % 2 == 0) return null;
-			result = moveBottomRight();
-			if (result == null) result = moveBottomLeft();
+			if (end.x - start.x === 0 || (end.x - start.x - 1) % 2 == 0) {
+				return null;
+			}
+			result = moveBottomRight(start, end);
+			if (result == null) result = moveBottomLeft(start, end);
 		} else {
 			console.log('top');
-			if ((a - x === 0 || (a - x + 1) % 2) == 0) return null;
-			result = moveTopLeft();
-			if (result == null) result = moveTopRight();
+			if ((start.x - end.x === 0 || (start.x - end.x + 1) % 2) == 0) {
+				return null;
 			}
-	} else if (x > a && y > b) {
-		result = moveBottomRight();
-	} else if (x < a && y < b) {
-		result = moveTopLeft();
-	} else if (x > a && b > y) {
-		result = moveBottomLeft();
-	} else if (a > x && y > b) {
-		result = moveTopRight();
+			result = moveTopLeft(start, end);
+			if (result == null) result = moveTopRight(start, end);
+		}
+	} else if (end.x > start.x && end.y > start.y) {
+		result = moveBottomRight(start, end);
+	} else if (end.x < start.x && end.y < start.y) {
+		result = moveTopLeft(start, end);
+	} else if (end.x > start.x && start.y > end.y) {
+		result = moveBottomLeft(start, end);
+	} else if (start.x > end.x && end.y > start.y) {
+		result = moveTopRight(start, end);
 	}
 	if (result != null) {
-		return [[a, b], ...result];
+		return [start, ...result];
 	}
 	return null;
+};
+export const traverseBishopMoveMain = (
+	start: IPoint,
+	end: IPoint,
+	n: number = 8
+): IPoint[] | null => {
+	if (end.x < 0 || end.y < 0 || end.x >= n || end.y >= n) {
+		return null;
+	}
+	return traverseBishopMove(start, end);
 };
