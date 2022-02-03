@@ -1,22 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { NavBar } from './components/NavBar';
 import { BishopMoveTraverse } from './pages/bishop-move-traverse/bishop-move-traverse';
-import { Home } from './pages/Home';
+import { Home } from './pages/home/Home';
 import { NavLinks } from './utility/utils';
 export const App: React.FC = () => {
 	return (
-		<Router>
-			<div>
-				<nav>
-					<ul>
-						<li>
-							<Link to={NavLinks.HOME}>Home</Link>
-						</li>
-						<li>
-							<Link to={NavLinks.BISHOP_MOVE_TRAVERSE}>Bishop Traverse</Link>
-						</li>
-					</ul>
-				</nav>
+		<div className='h-screen w-screen'>
+			<Router>
+				<NavBar />
 				<Routes>
 					<Route path={NavLinks.HOME} element={<Home />} />
 					<Route
@@ -24,7 +16,7 @@ export const App: React.FC = () => {
 						element={<BishopMoveTraverse />}
 					/>
 				</Routes>
-			</div>
-		</Router>
+			</Router>
+		</div>
 	);
 };

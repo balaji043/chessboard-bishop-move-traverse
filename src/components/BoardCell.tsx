@@ -1,47 +1,16 @@
 import { FC } from 'react';
-import { COLORS } from '../utility/utils';
-
 export interface IBoardCell {
-	isStart: boolean;
-	isEnd: boolean;
-	i: number;
-	j: number;
-	grid: string[][];
-	setGrid: (grid: string[][]) => void;
+	color: string;
+	onClick: () => void;
 }
-export const BoardCell: FC<IBoardCell> = ({
-	isStart,
-	isEnd,
-	grid,
-	i,
-	j,
-	setGrid,
-}) => {
-	console.log(`Board Cell [${i},${j}] Rendered`);
-	const backgroundColor = (): any => {
-		if (isStart && isEnd) {
-			return {
-				backgroundColor: COLORS.same,
-				color: 'white',
-			};
-		}
-		return {
-			backgroundColor: isStart ? COLORS.start : isEnd ? COLORS.end : grid[i][j],
-		};
-	};
+export const BoardCell: FC<IBoardCell> = ({ children, color, onClick, }) => {
+	// console.log(`Cell Rendered ${children} ${color}`)
 	return (
 		<button
-			onClick={() => {
-				if (!isStart && !isEnd) {
-					if (grid[i][j] === COLORS.selected) grid[i][j] = COLORS.default;
-					else grid[i][j] = COLORS.selected;
-					setGrid([...grid]);
-				}
-			}}
-			className='Box'
-			style={backgroundColor()}
+			onClick={() => onClick()}
+			className={`h-14 w-14 border-2 m-2 rounded-md ${color}`}
 		>
-			[{`${i},${j}`}]
+			{children}
 		</button>
 	);
 };

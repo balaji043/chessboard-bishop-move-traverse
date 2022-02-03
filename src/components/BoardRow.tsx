@@ -1,40 +1,28 @@
 import { FC } from 'react';
-import { IPoint, isSame } from '../utility/utils';
+import { IPoint } from '../utility/utils';
 import { BoardCell } from './BoardCell';
 
 export interface IBoardRowProps {
 	i: number;
-	startPoint: IPoint;
-	endPoint: IPoint;
 	row: string[];
-	grid: string[][];
-	setGrid: (grid: string[][]) => void;
+	onClick: (iPoint: IPoint) => void;
 }
 export const BoardRow: FC<IBoardRowProps> = ({
-	i,
-	startPoint,
-	endPoint,
+	i: x,
 	row,
-	grid,
-	setGrid,
+	onClick,
 }) => {
-	console.log(`Board Row ${i} Rendered`);
-
 	return (
-		<div style={{ display: 'flex' }}>
-			{row.map((_, j) => {
-				const isStart = isSame(i, j, startPoint);
-				const isEnd = isSame(i, j, endPoint);
+		<div className='flex'>
+			{row.map((color, y) => {
 				return (
 					<BoardCell
-						key={`cell${i}${j}`}
-						isStart={isStart}
-						isEnd={isEnd}
-						i={i}
-						j={j}
-						setGrid={setGrid}
-						grid={grid}
-					/>
+						color={color}
+						onClick={() => onClick({ x, y })}
+						key={`Cells[${x},${y}]`}
+					>
+						[{`${x},${y}`}]
+					</BoardCell>
 				);
 			})}
 		</div>

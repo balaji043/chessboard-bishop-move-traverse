@@ -8,9 +8,8 @@ export interface IPointInputProps {
 }
 
 export const PointInput: FC<IPointInputProps> = ({ point, setPoint, type }) => {
-	console.log(`Point ${type} Rendered`);
 	return (
-		<div className='InputGroup'>
+		<div className='grid grid-cols-2 gap-2 w-full'>
 			<NumInput
 				defaultValue={point.x}
 				onChange={(e) => {

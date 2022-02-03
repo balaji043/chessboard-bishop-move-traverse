@@ -1,65 +1,35 @@
 import { useReducer } from 'react';
+import { FC } from 'react';
 import { BoardRow } from '../../components/BoardRow';
-import { CanTraverse } from '../../components/CanTraverse';
-import { ColorCoders } from '../../components/ColorCoder';
-import { PointInput } from '../../components/PointInput';
-import { appReducer, defaultState } from './reducer';
+import { LeftSection } from './components/LeftSection';
+import { appReducer, appDefaultState } from './bishopMoveTraverseReducer';
 
-
-export const BishopMoveTraverse = () => {
+export const BishopMoveTraverse: FC = () => {
 	const [{ startPoint, endPoint, grid, canTraverse }, dispatch] = useReducer(
 		appReducer,
-		defaultState()
+		appDefaultState()
 	);
 
 	return (
-		<div className='Container'>
-			<div className='InputContainer'>
-				<PointInput
-					point={startPoint}
-					setPoint={(p) => dispatch({ type: 'start-i', p })}
-					type='Start'
+		<div className='max-w-screen-2xl'>
+			<div className='h-full grid grid-cols-12 max-w-6xl mx-auto'>
+				<LeftSection
+					startPoint={startPoint}
+					endPoint={endPoint}
+					canTraverse={canTraverse}
+					dispatch={dispatch}
 				/>
-				<PointInput
-					point={endPoint}
-					setPoint={(p) => dispatch({ type: 'end-i', p })}
-					type='End'
-				/>
-				<ColorCoders />
-				<div className='ActionButtons'>
-					<button
-						className='button'
-						onClick={() => dispatch({ type: 'clear-selection' })}
-					>
-						clear selections
-					</button>
-					<button
-						className='button'
-						onClick={() => {
-							dispatch({ type: 'clear-selection' });
-							dispatch({ type: 'traverse' });
-						}}
-					>
-						Traverse
-					</button>
-				</div>
-				<CanTraverse canTraverse={canTraverse} />
-			</div>
-			<div>
-				<div>
-					{grid.map((row, i) => (
-						<BoardRow
-							startPoint={startPoint}
-							endPoint={endPoint}
-							grid={grid}
-							setGrid={(grid: string[][]) => {
-								dispatch({ type: 'update-grid', grid });
-							}}
-							key={'row' + i}
-							i={i}
-							row={row}
-						/>
-					))}
+				<div className='col-span-8 grid justify-center'>
+					<div>
+						{grid.map((row, i) => (
+							<BoardRow
+								onClick={(point) => dispatch({ type: 'cell-click', point })}
+								key={'row' + i}
+								i={i}
+								row={row}
+							/>
+						))}
+					</div>
 				</div>
 			</div>
 		</div>

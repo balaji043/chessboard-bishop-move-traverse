@@ -1,14 +1,13 @@
 import { FC } from 'react';
-import { COLORS } from '../utility/utils';
+import { CellColors } from '../utility/utils';
 
-export const ColorCoders = () => {
-	console.log("ColorCoders Rendered")
+export const ColorCoders: FC = () => {
 	return (
-		<div className='ColorCoderContainer'>
-			<ColorCoder backgroundColor={COLORS.default} label='Default' />
-			<ColorCoder backgroundColor={COLORS.selected} label='Selected' />
-			<ColorCoder backgroundColor={COLORS.start} label='Start' />
-			<ColorCoder backgroundColor={COLORS.end} label='End' />
+		<div className='grid grid-cols-2'>
+			<ColorCoder backgroundColor={CellColors.default} label='Default' />
+			<ColorCoder backgroundColor={CellColors.selected} label='Selected' />
+			<ColorCoder backgroundColor={CellColors.start} label='Start' />
+			<ColorCoder backgroundColor={CellColors.end} label='End' />
 		</div>
 	);
 };
@@ -20,9 +19,11 @@ interface IColorCoderProps {
 
 const ColorCoder: FC<IColorCoderProps> = ({ backgroundColor, label }) => {
 	return (
-		<div className='ColorCoder'>
-			<div className='ColorCoderBox' style={{ backgroundColor }}></div>
-			<label className='ColorCoderLabel'> {label}</label>
+		<div className='flex gap-3 items-center'>
+			<div
+				className={`m-1 w-6 h-6 border-2 rounded-md ${backgroundColor}`}
+			></div>
+			<label> {label}</label>
 		</div>
 	);
 };
