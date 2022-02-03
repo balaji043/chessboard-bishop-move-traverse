@@ -3,8 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { BishopMoveTraverse } from './pages/bishop-move-traverse/bishop-move-traverse';
 import { Home } from './pages/Home';
 import { NavLinks } from './utility/utils';
-
-export const App = () => {
+export const App: React.FC = () => {
 	return (
 		<Router>
 			<div>
