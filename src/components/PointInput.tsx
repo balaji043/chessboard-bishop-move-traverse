@@ -8,6 +8,7 @@ export interface IPointInputProps {
 }
 
 export const PointInput: FC<IPointInputProps> = ({ point, setPoint, type }) => {
+	console.log(`Point ${type} Rendered`);
 	return (
 		<div className='InputGroup'>
 			<NumInput

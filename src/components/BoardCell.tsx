@@ -1,5 +1,5 @@
-import { FC } from "react";
-import { COLORS } from "../utility/utils";
+import { FC } from 'react';
+import { COLORS } from '../utility/utils';
 
 export interface IBoardCell {
 	isStart: boolean;
@@ -17,10 +17,11 @@ export const BoardCell: FC<IBoardCell> = ({
 	j,
 	setGrid,
 }) => {
+	console.log(`Board Cell [${i},${j}] Rendered`);
 	const backgroundColor = (): any => {
 		if (isStart && isEnd) {
 			return {
-				backgroundColor: '#038285',
+				backgroundColor: COLORS.same,
 				color: 'white',
 			};
 		}

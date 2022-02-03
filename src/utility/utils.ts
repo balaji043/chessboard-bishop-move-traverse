@@ -3,6 +3,7 @@ export const COLORS = {
 	start: '#e76969ab',
 	end: '#42b842a8',
 	selected: '#ebeb43',
+	same: '#038285',
 };
 export const CHESS_BOARD_SIZE = 8;
 export const getChessGrid = (): string[][] =>
@@ -26,8 +27,13 @@ export const isValidCoordinate = (n: number): boolean => {
 	return false;
 };
 
-export const IS_TRAVERSABLE = {
-	yes: 'Traversable 😁!!!',
-	no: 'Not Traversable 😅!!!',
-	default: '',
-};
+export enum IS_TRAVERSABLE {
+	yes = 'Traversable 😁!!!',
+	no = 'Not Traversable 😅!!!',
+	default = '',
+}
+
+export enum NavLinks {
+	HOME = '/',
+	BISHOP_MOVE_TRAVERSE = '/bishop-move-traverse'
+}
