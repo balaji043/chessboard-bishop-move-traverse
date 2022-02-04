@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { IsTraversable } from '../utility/utils';
+import { IsTraversable } from '../../../utility/utils';
 
 interface ICanTraverseProps {
 	canTraverse: string;

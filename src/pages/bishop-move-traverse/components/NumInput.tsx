@@ -1,21 +1,22 @@
 import { FC, ChangeEvent } from 'react';
-import { CHESS_BOARD_SIZE } from '../utility/utils';
 export interface INumInputProps {
 	defaultValue: number;
 	label: string;
+	max: number;
 	onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 export const NumInput: FC<INumInputProps> = ({
 	defaultValue,
 	onChange,
 	label,
+	max,
 }) => {
 	return (
 		<div>
 			<label className='block'>{label}</label>
 			<input
 				min={0}
-				max={CHESS_BOARD_SIZE - 1}
+				max={max - 1}
 				type='number'
 				defaultValue={defaultValue}
 				onChange={(e) => onChange(e)}

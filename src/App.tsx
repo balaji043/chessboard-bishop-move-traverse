@@ -1,8 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { NavBar } from './components/NavBar';
 import { BishopMoveTraverse } from './pages/bishop-move-traverse/bishop-move-traverse';
 import { Home } from './pages/home/Home';
+import { Sudoku } from './pages/sudoku/Sudoku';
 import { NavLinks } from './utility/utils';
 export const App: React.FC = () => {
 	return (
@@ -14,6 +15,10 @@ export const App: React.FC = () => {
 					<Route
 						path={NavLinks.BISHOP_MOVE_TRAVERSE}
 						element={<BishopMoveTraverse />}
+					/>
+					<Route
+						path={NavLinks.SUDOKU}
+						element={<Sudoku />}
 					/>
 				</Routes>
 			</Router>

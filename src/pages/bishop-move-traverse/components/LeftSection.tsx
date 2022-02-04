@@ -1,10 +1,10 @@
 import { Dispatch } from 'react';
 import { FC } from 'react';
 import { Button } from '../../../components/Button';
-import { CanTraverse } from '../../../components/CanTraverse';
-import { ColorCoders } from '../../../components/ColorCoder';
-import { PointInput } from '../../../components/PointInput';
-import { IPoint } from '../../../utility/utils';
+import { CanTraverse } from './CanTraverse';
+import { ColorCoders } from './ColorCoder';
+import { PointInput } from './PointInput';
+import { CHESS_BOARD_SIZE, IPoint } from '../../../utility/utils';
 import { AppAction } from '../bishopMoveTraverseReducer';
 
 interface IProps {
@@ -26,11 +26,13 @@ export const LeftSection: FC<IProps> = ({
 					point={startPoint}
 					setPoint={(p) => dispatch({ type: 'input', isStart: true, p })}
 					type='Start'
+					max={CHESS_BOARD_SIZE}
 				/>
 				<PointInput
 					point={endPoint}
 					setPoint={(p) => dispatch({ type: 'input', isStart: false, p })}
 					type='End'
+					max={CHESS_BOARD_SIZE}
 				/>
 				<ColorCoders />
 				<Button onClick={() => dispatch({ type: 'clear-selection' })}>

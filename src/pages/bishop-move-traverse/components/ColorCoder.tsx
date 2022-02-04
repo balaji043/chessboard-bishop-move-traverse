@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { CellColors } from '../utility/utils';
+import { CellColors } from '../../../utility/utils';
 
 export const ColorCoders: FC = () => {
 	return (

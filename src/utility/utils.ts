@@ -6,9 +6,9 @@ export enum CellColors {
 	same = ' bg-blue-600',
 }
 export const CHESS_BOARD_SIZE = 8;
-export const getChessGrid = (): string[][] =>
-	Array.from({ length: CHESS_BOARD_SIZE }, () =>
-		Array.from({ length: CHESS_BOARD_SIZE }, () => CellColors.default)
+export const getChessGrid = (length: number = CHESS_BOARD_SIZE): string[][] =>
+	Array.from({ length }, () =>
+		Array.from({ length }, () => CellColors.default)
 	);
 export interface IPoint {
 	x: number;
@@ -36,4 +36,6 @@ export enum IsTraversable {
 export enum NavLinks {
 	HOME = '/',
 	BISHOP_MOVE_TRAVERSE = '/bishop-move-traverse',
+	SUDOKU = '/sudoku',
+
 }

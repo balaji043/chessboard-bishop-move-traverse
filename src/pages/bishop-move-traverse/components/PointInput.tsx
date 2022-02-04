@@ -1,13 +1,19 @@
 import { FC } from 'react';
-import { IPoint, isValidCoordinate } from '../utility/utils';
+import { IPoint, isValidCoordinate } from '../../../utility/utils';
 import { NumInput } from './NumInput';
 export interface IPointInputProps {
 	point: IPoint;
 	setPoint: (ipoint: IPoint) => void;
 	type: 'Start' | 'End';
+	max: number;
 }
 
-export const PointInput: FC<IPointInputProps> = ({ point, setPoint, type }) => {
+export const PointInput: FC<IPointInputProps> = ({
+	point,
+	setPoint,
+	type,
+	max,
+}) => {
 	return (
 		<div className='grid grid-cols-2 gap-2 w-full'>
 			<NumInput
@@ -16,6 +22,7 @@ export const PointInput: FC<IPointInputProps> = ({ point, setPoint, type }) => {
 					const n = parseInt(e.target.value);
 					if (isValidCoordinate(n)) setPoint({ x: n, y: point.y });
 				}}
+				max={max}
 				label={`${type} Point Row`}
 			/>
 			<NumInput
@@ -24,6 +31,7 @@ export const PointInput: FC<IPointInputProps> = ({ point, setPoint, type }) => {
 					const n = parseInt(e.target.value);
 					if (isValidCoordinate(n)) setPoint({ x: point.x, y: n });
 				}}
+				max={max}
 				label={`${type} Point Col`}
 			/>
 		</div>

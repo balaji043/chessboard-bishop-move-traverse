@@ -10,6 +10,10 @@ export const NavBar = () => {
 					label='Bishop Traverse'
 					path={NavLinks.BISHOP_MOVE_TRAVERSE}
 				/>
+				<AppNavLink
+					label='Sudoku'
+					path={NavLinks.SUDOKU}
+				/>
 			</div>
 		</nav>
 	);

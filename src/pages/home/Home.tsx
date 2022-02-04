@@ -1,30 +1,29 @@
 import { useReducer } from 'react';
 import { FC } from 'react';
-import { BoardCell } from '../../components/BoardCell';
-import { homeDefaultState, homeReducer } from './reducer';
+import { BoardRow } from '../../components/BoardRow';
+import { PointInput } from '../bishop-move-traverse/components/PointInput';
+import { homeDefaultState, homeReducer } from './homeReducer';
 
 export const Home: FC = () => {
-	const [{ grid }, dispatch] = useReducer(homeReducer, homeDefaultState());
+	const [{ grid, }, dispatch] = useReducer(
+		homeReducer,
+		homeDefaultState()
+	);
 
 	return (
-		<div>
-			<div className='col-span-8 grid justify-center'>
-				<div>
-					{grid.map((row, i) => (
-						<div className='flex' key={`row${i}`}>
-							{row.map((_, j) => {
-								return (
-									<BoardCell
-										color={''}
-										onClick={() => {}}
-										key={`Cells[${i},${j}]`}
-									>
-										[{`${i},${j}`}]
-									</BoardCell>
-								);
-							})}
-						</div>
-					))}
+		<div className='max-w-screen-2xl'>
+			<div className='h-full grid grid-cols-12 max-w-6xl mx-auto'>
+				<div className='grid'>
+					<div>
+						{grid.map((row, i) => (
+							<BoardRow
+								i={i}
+								row={row}
+								onClick={(point) => dispatch({ type: 'cell-click', point })}
+								key={`row${i}`}
+							/>
+						))}
+					</div>
 				</div>
 			</div>
 		</div>
