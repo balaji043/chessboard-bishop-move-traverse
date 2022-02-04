@@ -20,7 +20,7 @@ export const NumInput: FC<INumInputProps> = ({
 				type='number'
 				defaultValue={defaultValue}
 				onChange={(e) => onChange(e)}
-				className='w-full px-5 py-3 inline-block border-2 box-border rounded-xl'
+				className='num-input-spin-buttons w-full px-5 py-3 inline-block border-2 box-border rounded-xl'
 			/>
 		</div>
 	);

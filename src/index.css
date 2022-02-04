@@ -1,13 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
-	opacity: 1;
-}
-
-input[type='number']::-webkit-outer-spin-button,
-input[type='number']::-webkit-inner-spin-button {
+.num-input-spin-buttons[type='number']::-webkit-outer-spin-button,
+.num-input-spin-buttons[type='number']::-webkit-inner-spin-button {
 	-webkit-appearance: inner-spin-button !important;
 	width: 25px;
 	position: absolute;
@@ -15,4 +10,9 @@ input[type='number']::-webkit-inner-spin-button {
 	right: 0;
 	height: 100%;
 	border-radius: 0.75rem;
+	opacity: 1;
+}
+.hide-num-input-spin-buttons[type="number"]::-webkit-inner-spin-button,
+.hide-num-input-spin-buttons[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none !important;
 }

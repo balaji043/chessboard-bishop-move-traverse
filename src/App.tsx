@@ -7,7 +7,7 @@ import { Sudoku } from './pages/sudoku/Sudoku';
 import { NavLinks } from './utility/utils';
 export const App: React.FC = () => {
 	return (
-		<div className='h-screen w-screen'>
+		<div className='h-screen w-screen overflow-y-auto'>
 			<Router>
 				<NavBar />
 				<Routes>
