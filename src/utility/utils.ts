@@ -35,7 +35,7 @@ export enum IsTraversable {
 
 export enum NavLinks {
 	HOME = '/',
+	GRID = '/grid',
 	BISHOP_MOVE_TRAVERSE = '/bishop-move-traverse',
 	SUDOKU = '/sudoku',
-
 }

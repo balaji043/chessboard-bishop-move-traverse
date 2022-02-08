@@ -1,9 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { NavBar } from './components/NavBar';
-import { BishopMoveTraverse } from './pages/bishop-move-traverse/bishop-move-traverse';
-import { Home } from './pages/home/Home';
-import { Sudoku } from './pages/sudoku/Sudoku';
+import { BishopMoveTraverse, Grid, Sudoku, Home } from './pages';
 import { NavLinks } from './utility/utils';
 export const App: React.FC = () => {
 	return (
@@ -12,14 +10,12 @@ export const App: React.FC = () => {
 				<NavBar />
 				<Routes>
 					<Route path={NavLinks.HOME} element={<Home />} />
+					<Route path={NavLinks.GRID} element={<Grid />} />
 					<Route
 						path={NavLinks.BISHOP_MOVE_TRAVERSE}
 						element={<BishopMoveTraverse />}
 					/>
-					<Route
-						path={NavLinks.SUDOKU}
-						element={<Sudoku />}
-					/>
+					<Route path={NavLinks.SUDOKU} element={<Sudoku />} />
 				</Routes>
 			</Router>
 		</div>

@@ -8,11 +8,12 @@ export const Sudoku: FC = () => {
 
 	return (
 		<div className=''>
+			<p>Work in progress</p>
 			<div className='h-full max-w-6xl mx-auto'>
 				<div className=''>
 					<div className='grid gap-4 m-10'>
 						{grid.map((row, x) => (
-							<div className='grid grid-cols-9 gap-4'>
+							<div className='grid grid-cols-9 gap-4' key={`row+${x}`}>
 								{row.map((cell, y) => {
 									const bg = cell !== 0 ? CellColors.end : CellColors.default;
 									return (

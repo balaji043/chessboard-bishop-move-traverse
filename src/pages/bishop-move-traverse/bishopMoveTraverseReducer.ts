@@ -116,12 +116,16 @@ export const appReducer = (
 			throw new Error();
 	}
 };
-
+const getGrid = () => {
+	const grid = getChessGrid();
+	grid[0][0] = CellColors.same;
+	return grid;
+};
 export const appDefaultState = (): AppState => {
 	return {
 		startPoint: { x: 0, y: 0 },
 		endPoint: { x: 0, y: 0 },
-		grid: getChessGrid(),
+		grid: getGrid(),
 		canTraverse: IsTraversable.default,
 	};
 };

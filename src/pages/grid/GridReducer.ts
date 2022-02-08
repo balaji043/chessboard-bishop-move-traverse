@@ -13,11 +13,11 @@ type IHomeAction =
 	  }
 	| { type: 'clear-selection' };
 
-export const homeDefaultState = (): IHomeState => {
+export const gridDefaultState = (): IHomeState => {
 	return { grid: getChessGrid(), gridRowLength: 8, gridColumnLength: 8 };
 };
 
-export const homeReducer = (
+export const gridReducer = (
 	currentState: IHomeState,
 	action: IHomeAction
 ): IHomeState => {

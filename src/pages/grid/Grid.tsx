@@ -1,13 +1,12 @@
 import { useReducer } from 'react';
 import { FC } from 'react';
 import { BoardRow } from '../../components/BoardRow';
-import { PointInput } from '../bishop-move-traverse/components/PointInput';
-import { homeDefaultState, homeReducer } from './homeReducer';
+import { gridDefaultState, gridReducer } from './GridReducer';
 
-export const Home: FC = () => {
+export const Grid: FC = () => {
 	const [{ grid, }, dispatch] = useReducer(
-		homeReducer,
-		homeDefaultState()
+		gridReducer,
+		gridDefaultState()
 	);
 
 	return (

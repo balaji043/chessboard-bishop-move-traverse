@@ -4,7 +4,6 @@ export interface IBoardCell {
 	onClick: () => void;
 }
 export const BoardCell: FC<IBoardCell> = ({ children, color, onClick, }) => {
-	// console.log(`Cell Rendered ${children} ${color}`)
 	return (
 		<button
 			onClick={() => onClick()}
