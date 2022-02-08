@@ -1,7 +1,7 @@
 import { useReducer } from 'react';
 import { FC } from 'react';
-import { BoardRow } from '../../components/BoardRow';
-import { gridDefaultState, gridReducer } from './GridReducer';
+import { BoardRow } from 'src/components/BoardRow';
+import { gridDefaultState, gridReducer } from 'src/pages/grid/GridReducer';
 
 export const Grid: FC = () => {
 	const [{ grid, }, dispatch] = useReducer(

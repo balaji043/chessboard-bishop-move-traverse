@@ -1,11 +1,11 @@
 import { Dispatch } from 'react';
 import { FC } from 'react';
-import { Button } from '../../../components/Button';
-import { CanTraverse } from './CanTraverse';
-import { ColorCoders } from './ColorCoder';
-import { PointInput } from './PointInput';
-import { CHESS_BOARD_SIZE, IPoint } from '../../../utility/utils';
-import { AppAction } from '../bishopMoveTraverseReducer';
+import { Button } from 'src/components/Button';
+import { CanTraverse } from 'src/pages/bishop-move-traverse/components//CanTraverse';
+import { ColorCoders } from 'src/pages/bishop-move-traverse/components/ColorCoder';
+import { PointInput } from 'src/pages/bishop-move-traverse/components/PointInput';
+import { CHESS_BOARD_SIZE, IPoint } from 'src/utility/utils';
+import { AppAction } from 'src/pages/bishop-move-traverse/bishopMoveTraverseReducer';
 
 interface IProps {
 	startPoint: IPoint;

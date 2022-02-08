@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { IPoint, isValidCoordinate } from '../../../utility/utils';
-import { NumInput } from './NumInput';
+import { IPoint, isValidCoordinate } from 'src/utility/utils';
+import { NumInput } from 'src/pages/bishop-move-traverse/components/NumInput';
 export interface IPointInputProps {
 	point: IPoint;
 	setPoint: (ipoint: IPoint) => void;

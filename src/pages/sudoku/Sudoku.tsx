@@ -1,7 +1,10 @@
 import { useReducer } from 'react';
 import { FC } from 'react';
-import { CellColors } from '../../utility/utils';
-import { sudokuDefaultState, sudokuReducer } from './SudokuReducer';
+import { CellColors } from 'src/utility/utils';
+import {
+	sudokuDefaultState,
+	sudokuReducer,
+} from 'src/pages/sudoku/SudokuReducer';
 
 export const Sudoku: FC = () => {
 	const [{ grid }, dispatch] = useReducer(sudokuReducer, sudokuDefaultState());

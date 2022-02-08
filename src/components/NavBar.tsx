@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
-import { NavLinks } from '../utility/utils';
+import { NavLinks } from 'src/utility/utils';
 
 export const NavBar = () => {
 	return (

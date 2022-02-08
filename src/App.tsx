@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { NavBar } from './components/NavBar';
-import { BishopMoveTraverse, Grid, Sudoku, Home } from './pages';
-import { NavLinks } from './utility/utils';
+import { NavBar } from 'src/components/NavBar';
+import { BishopMoveTraverse, Grid, Sudoku, Home } from 'src/pages';
+import { NavLinks } from 'src/utility/utils';
 export const App: React.FC = () => {
 	return (
 		<div className='h-screen w-screen overflow-y-auto'>

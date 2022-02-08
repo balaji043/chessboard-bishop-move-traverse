@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { IPoint } from '../utility/utils';
-import { BoardCell } from './BoardCell';
+import { IPoint } from 'src/utility/utils';
+import { BoardCell } from 'src/components/BoardCell';
 
 export interface IBoardRowProps {
 	i: number;

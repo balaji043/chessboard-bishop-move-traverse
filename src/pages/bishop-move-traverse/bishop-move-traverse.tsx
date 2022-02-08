@@ -1,8 +1,8 @@
 import { useReducer } from 'react';
 import { FC } from 'react';
-import { BoardRow } from '../../components/BoardRow';
-import { LeftSection } from './components/LeftSection';
-import { appReducer, appDefaultState } from './bishopMoveTraverseReducer';
+import { BoardRow } from 'src/components/BoardRow';
+import { LeftSection } from 'src/pages/bishop-move-traverse/components/LeftSection';
+import { appReducer, appDefaultState } from 'src/pages/bishop-move-traverse/bishopMoveTraverseReducer';
 
 export const BishopMoveTraverse: FC = () => {
 	const [{ startPoint, endPoint, grid, canTraverse }, dispatch] = useReducer(
